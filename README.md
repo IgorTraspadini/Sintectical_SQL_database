@@ -7,8 +7,6 @@ specific format.
 Intended to solve this issue, I've created this project that I'll using after to perform some optimization tasks and 
 best practices in SQL querry.
 
-![alt text](https://avinash333.files.wordpress.com/2019/08/spark-architecture.png?w=960)
-
 **Table of contents**
 - [About the Project](#about-the-project)
 - [Language](#language)
@@ -33,8 +31,6 @@ best practices in SQL querry.
 - [Create the tables](#create-the-tables)
 - [Normalize the database](#normalize-the-database)
 - [Check the database](#check-the-database)
-- [References](#references)
-- [Author](#author)
 
 ### Import the library
 ```python
@@ -113,8 +109,9 @@ print(table_as_df(cursor))
 ```
 ### Populate the tables
 ```python
-# 
-for x in range(100000):
+# It will created just one hundred of records in order to test it.
+# later it will be populated with 2M of data.
+for x in range(10):
     cursor.execute("INSERT INTO Customer (customer_id, Name, Address_id, Email, Phone, Job, Company)\
                     VALUES (?,?,?,?,?,?,?)",(x,
                                         str(fake.name()),
@@ -133,6 +130,9 @@ for x in range(100000):
                                         ))
 
 conn.commit()
+
+
+
 ```
 ### Normalize the database
 
@@ -149,7 +149,7 @@ conn.commit()
 ## Rum Project
 ```bash
 # Clone the reposotiry 
-git clone https://github.com/xxxxx/xxxxxxx.git
+git clone https://github.com/IgorTraspadini/Sintectical_SQL_database.git
 
 # Import
 requirements.txt
