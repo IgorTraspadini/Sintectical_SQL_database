@@ -1,4 +1,4 @@
-# Project Overview
+# About the Project
 
 In some tasks we need a simple database with a large quantity of data to perform some labs or optimization tests,        
 however to find it in the internet is not soo easy, the size of the file is soo large or need to be converted to a         
@@ -10,7 +10,7 @@ best practices in SQL querry.
 ![alt text](https://avinash333.files.wordpress.com/2019/08/spark-architecture.png?w=960)
 
 **Table of contents**
-- [Project Overview](#project-overview)
+- [About the Project](#about-the-project)
 - [Language](#language)
 - [Library](#library)
 - [Getting started](#getting-started)
@@ -38,8 +38,18 @@ best practices in SQL querry.
 
 ### Building the database
 
-### Create the tables
+```python
+# import the library
 
+
+# set a cursor to the database
+# whether the database doesn't exist sqlite create it.
+
+conn = sqlite3.connect('db_test.db')
+cursor = conn.cursor()
+``` 
+
+### Create the tables
 ### Populate the tables
 
 ### Normalize the database
@@ -53,8 +63,16 @@ best practices in SQL querry.
 |Amanda| 29|         4|
 
 ## Rum Project
+```bash
+# Clone the reposotiry 
+git clone https://github.com/xxxxx/xxxxxxx.git
 
+# Import
+requirements.txt
 
+# Run the project
+python sintectical_db.py
+```
 
 ## References 
 - [Faker Documentation](https://faker.readthedocs.io/en/master/)
