@@ -29,11 +29,10 @@ best practices in SQL querry.
 
 ## Getting started
 
-**Contents**
-- [Spark Overview](#spark-overview)
-- [Focus](#focus)
-- [Library](#library)
-- [Getting started](#getting-started)
+- [Building the database](#building-the-database)
+- [Create the tables](#create-the-tables)
+- [Normalize the database](#normalize-the-database)
+- [Check the database](#check-the-database)
 - [References](#references)
 - [Author](#author)
 
