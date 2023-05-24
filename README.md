@@ -37,15 +37,15 @@ best practices in SQL querry.
 - [References](#references)
 - [Author](#author)
 
-## Building the database
+### Building the database
 
-## Create the tables
+### Create the tables
 
-## Populate the tables
+### Populate the tables
 
-## Normalize the database
+### Normalize the database
 
-## Check the database
+### Check the database
 
 |  Name|Age|Experience|
 |:----:|:-:|:--------:|
@@ -64,6 +64,4 @@ best practices in SQL querry.
 
 ## Author
 
-Igor Traspadini
-
-https://www.linkedin.com/in/xxxxxxxxxxx/
+[Igor Traspadini](https://www.linkedin.com/in/igor-chieppe-traspadini/?locale=en_US)
