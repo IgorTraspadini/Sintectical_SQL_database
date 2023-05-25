@@ -42,7 +42,6 @@ import sqlite3
 fake = Faker()
 fake.seed_instance(121)
 ```
-
 ### Building the database
 ```python
 # set a cursor to the database
@@ -50,7 +49,6 @@ fake.seed_instance(121)
 conn = sqlite3.connect('db_test.db')
 cursor = conn.cursor()
 ``` 
-
 ### Create the tables
 ```python
 cursor.execute("CREATE TABLE Customer (customer_id INTEGER NOT NULL PRIMARY KEY,\
@@ -75,7 +73,6 @@ cursor.execute("CREATE TABLE Country (Country_id INTEGER NOT NULL PRIMARY KEY,\
 cursor.execute("CREATE TABLE City (City_id INTEGER NOT NULL PRIMARY KEY,\
                                          City TEXT\
                                          );")
-
 conn.commit()
 
 # function to extract the data from the database as a dataframe
@@ -105,7 +102,6 @@ print(table_as_df(cursor))
 #4    4        Phone     TEXT        0       None   0
 #5    5          Job     TEXT        0       None   0
 #6    6      Company     TEXT        0       None   0
-
 ```
 ### Populate the tables
 ```python
@@ -130,9 +126,6 @@ for x in range(10):
                                         ))
 
 conn.commit()
-
-
-
 ```
 ### Normalize the database
 
