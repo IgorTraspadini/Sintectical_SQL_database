@@ -21,7 +21,7 @@ best practices in SQL querry.
 - SQL
 
 ## Library
-- Faker   x.x.x
+- Faker   18.7.0
 - Pandas  2.0.1
 - Sqlite  
 
