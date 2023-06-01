@@ -75,14 +75,7 @@ cursor.execute("CREATE TABLE City (City_id INTEGER NOT NULL PRIMARY KEY,\
                                          );")
 conn.commit()
 
-# function to extract the data from the database as a dataframe
-def table_as_df(cursor):
-    columns = [col[0] for col in cursor.description]
-    return pd.DataFrame([dict(zip(columns, row)) for row in cursor.fetchall()])
-
 # check if the tables were created on the database
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
-print(table_as_df(cursor))
 
 #       name
 #0   Address
@@ -90,9 +83,7 @@ print(table_as_df(cursor))
 #2   Country
 #3  Customer
 
-# check the contents on the table "Customer"
-cursor.execute("PRAGMA table_info({})".format(Customer))
-print(table_as_df(cursor))
+# check the table structure of "Customer"
 
 #   cid         name     type  notnull dflt_value  pk
 #0    0  customer_id  INTEGER        1       None   1
@@ -107,7 +98,7 @@ print(table_as_df(cursor))
 ```python
 # It will created just one hundred of records in order to test it.
 # later it will be populated with 2M of data.
-for x in range(10):
+for x in range(100):
     cursor.execute("INSERT INTO Customer (customer_id, Name, Address_id, Email, Phone, Job, Company)\
                     VALUES (?,?,?,?,?,?,?)",(x,
                                         str(fake.name()),
@@ -128,16 +119,51 @@ for x in range(10):
 conn.commit()
 ```
 ### Normalize the database
+```Python
+
+cursor.execute("SELECT DISTINCT City FROM Address")
+df_city = table_as_df(cursor)
+city_list = []
+for a, b in enumerate(df_city.City):
+    city_list.append((a, b))
+
+cursor.execute("SELECT DISTINCT Country FROM Address")
+df_country = table_as_df(cursor)
+country_list = []
+for a, b in enumerate(df_country.Country):
+    country_list.append((a, b))
 
 
+cursor.executemany("INSERT INTO City (City_id, City) VALUES(?,?)",city_list)
+cursor.executemany("INSERT INTO Country (Country_id, Country) VALUES(?,?)",country_list)
+cursor.executemany("UPDATE Address SET Country_id = ? WHERE Country = ?",country_list)
+cursor.executemany("UPDATE Address SET City_id = ? WHERE City = ?",city_list)
+cursor.execute("ALTER TABLE Address DROP COLUMN City")
+cursor.execute("ALTER TABLE Address DROP COLUMN Country")
+conn.commit()
 
+```
 ### Check the database
+Customer Table
+|customer_id|              Name|Address_id|                      Email|  Phone           |   Job                     |  Company         |
+|:---------:|:----------------:|:--------:|:-------------------------:|:----------------:|:-------------------------:|:----------------:| 
+|          0|     Kevin Sanders|       100| christinamills@example.com| 260-962-0765x7932|Loss adjuster, chartered   | Jordan Inc       |
+|          1|      Justin Patel|       101|  victoriahogan@example.org|    3637991023    | Engineer, aeronautical    |Harris, White & Mc| 
+|          2|Matthew Hughes Jr.|       102|  jonesadrienne@example.com| (742)425-3943x211| Further education lecturer|Hubbard-Navarro   |
 
-|  Name|Age|Experience|
-|:----:|:-:|:--------:|
-| Summy| 31|        10|
-|  Anna| 30|         8|
-|Amanda| 29|         4|
+Address Table
+|Address_id|                                          Address  | Zipcode| City_id | Country_id |  
+|:--------:|:-------------------------------------------------:|:------:|:-------:|:----------:|
+|       100|           687 Denise Creek\nJohnsonmouth, NH 48492|   49306|        0|           0| 
+|       101|  6159 Lindsey Islands Suite 946\nHughestown, MN...|   95586|        1|           1|
+|       102|                           USS Howard\nFPO AE 68571|   35641|        2|           2|
+
+City Table                            Country Table
+|City_id|        City      |          |Country_id|     Country      |
+|:-----:|:----------------:|          |:--------:|:----------------:| 
+|      0|   New Derricktown|          |         0|Puerto Rico       |
+|      1|      Rayborough  |          |         1|Russian Federation|
+|      2| North Andrewbury |          |         2|  Ukraine         |
 
 ## Rum Project
 ```bash
