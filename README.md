@@ -75,24 +75,47 @@ cursor.execute("CREATE TABLE City (City_id INTEGER NOT NULL PRIMARY KEY,\
                                          );")
 conn.commit()
 
-# check if the tables were created on the database
+'''
+check if the tables were created on the database
 
-#       name
-#0   Address
-#1      City
-#2   Country
-#3  Customer
+    Table name
+0   Address
+1      City
+2   Country
+3  Customer
 
-# check the table structure of "Customer"
+check the tables structure"
 
-#   cid         name     type  notnull dflt_value  pk
-#0    0  customer_id  INTEGER        1       None   1
-#1    1         Name     TEXT        0       None   0
-#2    2   Address_id  INTEGER        0       None   0
-#3    3        Email     TEXT        0       None   0
-#4    4        Phone     TEXT        0       None   0
-#5    5          Job     TEXT        0       None   0
-#6    6      Company     TEXT        0       None   0
+Customer
+cid       name     type  notnull dflt_value  pk
+0  customer_id  INTEGER        1       None   1
+1         Name     TEXT        0       None   0
+2   Address_id  INTEGER        0       None   0
+3        Email     TEXT        0       None   0
+4        Phone     TEXT        0       None   0
+5          Job     TEXT        0       None   0
+6      Company     TEXT        0       None   0
+
+Address
+cid      name     type  notnull dflt_value  pk
+0  Address_id  INTEGER        1       None   1
+1     Address     TEXT        0       None   0
+2     Zipcode     TEXT        0       None   0
+3     City_id  INTEGER        0       None   0
+4        City     TEXT        0       None   0
+5  Country_id  INTEGER        0       None   0
+6     Country     TEXT        0       None   0
+
+City
+cid   name     type  notnull dflt_value  pk
+0  City_id  INTEGER        1       None   1
+1     City     TEXT        0       None   0
+
+Country
+cid      name     type  notnull dflt_value  pk
+0  Country_id  INTEGER        1       None   1
+1     Country     TEXT        0       None   0
+'''
 ```
 ### Populate the tables
 ```python
@@ -120,7 +143,6 @@ conn.commit()
 ```
 ### Normalize the database
 ```Python
-
 cursor.execute("SELECT DISTINCT City FROM Address")
 df_city = table_as_df(cursor)
 city_list = []
