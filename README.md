@@ -4,8 +4,8 @@ In some tasks we need a simple database with a large quantity of data to perform
 however to find it in the internet is not soo easy, the size of the file is soo large or need to be converted to a         
 specific format.       
 
-Intended to solve this issue, I've created this project that I'll using after to perform some optimization tasks and 
-best practices in SQL querry.
+Intended to solve this issue, I've created this project that I'll using after to perform some [optimization tasks and 
+best practices in SQL querry](https://github.com/IgorTraspadini/SQL_Optimization).
 
 **Table of contents**
 - [About the Project](#about-the-project)
