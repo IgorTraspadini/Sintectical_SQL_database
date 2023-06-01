@@ -133,7 +133,6 @@ country_list = []
 for a, b in enumerate(df_country.Country):
     country_list.append((a, b))
 
-
 cursor.executemany("INSERT INTO City (City_id, City) VALUES(?,?)",city_list)
 cursor.executemany("INSERT INTO Country (Country_id, Country) VALUES(?,?)",country_list)
 cursor.executemany("UPDATE Address SET Country_id = ? WHERE Country = ?",country_list)
@@ -141,7 +140,6 @@ cursor.executemany("UPDATE Address SET City_id = ? WHERE City = ?",city_list)
 cursor.execute("ALTER TABLE Address DROP COLUMN City")
 cursor.execute("ALTER TABLE Address DROP COLUMN Country")
 conn.commit()
-
 ```
 ### Check the database
 Customer Table
@@ -158,12 +156,19 @@ Address Table
 |       101|  6159 Lindsey Islands Suite 946\nHughestown, MN...|   95586|        1|           1|
 |       102|                           USS Howard\nFPO AE 68571|   35641|        2|           2|
 
-City Table                            Country Table
-|City_id|        City      |          |Country_id|     Country      |
-|:-----:|:----------------:|          |:--------:|:----------------:| 
-|      0|   New Derricktown|          |         0|Puerto Rico       |
-|      1|      Rayborough  |          |         1|Russian Federation|
-|      2| North Andrewbury |          |         2|  Ukraine         |
+City Table                            
+|City_id|        City      |          
+|:-----:|:----------------:|           
+|      0|   New Derricktown|          
+|      1|      Rayborough  |          
+|      2| North Andrewbury |          
+
+Country Table
+|Country_id|     Country      |
+|:--------:|:----------------:|
+|         0|Puerto Rico       |
+|         1|Russian Federation|
+|         2|  Ukraine         |
 
 ## Rum Project
 ```bash
